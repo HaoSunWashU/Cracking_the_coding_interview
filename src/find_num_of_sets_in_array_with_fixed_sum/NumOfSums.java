@@ -13,16 +13,34 @@ public class NumOfSums {
 	}
 	
 	private static int numOfSets_recur(int[] array, int sum, int index, HashMap<String, Integer> mem) {
+		
+		//### 1. Check the memory first to see if there are resutls ###//
 		String key = sum + ":" + index;
 		if(mem.containsKey(key)) {
 			return mem.get(key);
 		}
 		
+		//### 2. Base Case ###//
+		if(sum == 0) {		//if sum == 0, there are only one option: { } emptyh list
+			return 1;
+		}else if(sum < 0) {
+			return 0;
+		}else if(index < 0) {
+			return 0;
+		}
+		
+		//### 3. Recursive process ###
+		//two options, include array[index] and exclude array[index]
+		int res = numOfSets_recur(array, sum - array[index], index - 1, mem) + 
+				numOfSets_recur(array, sum, index - 1, mem);
+		mem.put(key, res);
+		return res;
 	} 
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		int[] array = {2, 4, 6, 10};
+		System.out.println(numOfSets_main(array, 16));
 	}
 
 }
