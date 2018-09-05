@@ -32,9 +32,6 @@ public class Knapsack_problem {
 	 * */
 	
 	
-	
-	
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
